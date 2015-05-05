@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:id="@+id/ImgIconCategory"
+        android:id="@+id/ImgIcon"
         android:padding="@dimen/small_padding"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -13,7 +13,7 @@
         android:layout_gravity="center"/>
 
     <TextView
-        android:id="@+id/textNameCategory"
+        android:id="@+id/textName"
         android:textSize="@dimen/medium_font"
         android:padding="@dimen/small_padding"
         android:text="@string/app_name"

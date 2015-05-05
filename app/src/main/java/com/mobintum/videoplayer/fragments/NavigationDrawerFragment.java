@@ -83,7 +83,7 @@ public class NavigationDrawerFragment extends Fragment {
 
         // Select either the default item (0) or the last selected item.
 
-        adapter = new CategoryAdapter(getActivity(), R.layout.item_category_list, Category.getCategories(getActivity()));
+        adapter = new CategoryAdapter(getActivity(), R.layout.item_list_icon, Category.getCategories(getActivity()));
 
         selectItem(mCurrentSelectedPosition);
     }

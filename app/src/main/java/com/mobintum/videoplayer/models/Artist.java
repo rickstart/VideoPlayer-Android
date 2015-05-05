@@ -1,6 +1,9 @@
 package com.mobintum.videoplayer.models;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+
+import java.util.ArrayList;
 
 /**
  * Created by Rick on 27/04/15.
@@ -39,5 +42,14 @@ public class Artist {
 
     public void setPicture(Drawable picture) {
         this.picture = picture;
+    }
+
+    public static ArrayList<Artist> getData(Context context, String nameCategory){
+
+        ArrayList<Artist> artists = new ArrayList<Artist>();
+
+        return artists;
+
+
     }
 }

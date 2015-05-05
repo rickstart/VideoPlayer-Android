@@ -9,20 +9,22 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mobintum.videoplayer.R;
-import com.mobintum.videoplayer.models.Category;
+import com.mobintum.videoplayer.models.Artist;
 
 import java.util.ArrayList;
 
 /**
  * Created by Rick on 04/05/15.
  */
-public class CategoryAdapter extends ArrayAdapter {
-    ArrayList<Category> categories;
+public class ArtistAdapter extends ArrayAdapter {
+
+
+    ArrayList<Artist> artists;
     Context context;
 
-    public CategoryAdapter(Context context, int resource, ArrayList<Category> categories) {
-        super(context, resource, categories);
-        this.categories = categories;
+    public ArtistAdapter(Context context, int resource, ArrayList<Artist> artists) {
+        super(context, resource, artists);
+        this.artists = artists;
         this.context = context;
     }
 
@@ -39,11 +41,11 @@ public class CategoryAdapter extends ArrayAdapter {
         holder.textName = (TextView) rowView.findViewById(R.id.textName);
 
         holder.imgPic = (ImageView) rowView.findViewById(R.id.ImgIcon);
-        Category category = categories.get(position);
+        Artist artist = artists.get(position);
 
-        holder.textName.setText(category.getNameCategory());
+        holder.textName.setText(artist.getNameArtist());
 
-        holder.imgPic.setImageDrawable(category.getIcon());
+        holder.imgPic.setImageDrawable(artist.getPicture());
 
         //convertView.setTag(holder);
         return rowView;
