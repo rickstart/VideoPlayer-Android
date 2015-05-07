@@ -23,9 +23,10 @@ public class VideoPlayerFragment extends Fragment {
     //String vidAddress = "https://drive.google.com/open?id=0B698tIvnz95WMV9na3pDaUpEQzg&authuser=0.mp4";
     String vidAddress = "http://mobintum.com/video/John%20Newman%20-%20Love%20Me%20Again.mp4";
     //String vidAddress = "https://www.dropbox.com/s/8fg3f7sefy57ktg/video_gnp.mp4";
-    Uri vidUri = Uri.parse(vidAddress);
+
     private static final String ARG_PARAM1 = "param1";
 
+    String url;
 
     // TODO: Rename and change types of parameters
     private int position;
@@ -33,10 +34,10 @@ public class VideoPlayerFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public static VideoPlayerFragment newInstance(int param1) {
+    public static VideoPlayerFragment newInstance(String url) {
         VideoPlayerFragment fragment = new VideoPlayerFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM1, url);
 
         fragment.setArguments(args);
         return fragment;
@@ -50,7 +51,7 @@ public class VideoPlayerFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            position = getArguments().getInt(ARG_PARAM1);
+            url = getArguments().getString(ARG_PARAM1);
 
         }
     }
@@ -62,6 +63,7 @@ public class VideoPlayerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_video_player, container, false);
 
         myVideo = (VideoView) view.findViewById(R.id.myVideo);
+        Uri vidUri = Uri.parse(url);
         myVideo.setVideoURI(vidUri);
         //myVideo.start();
 

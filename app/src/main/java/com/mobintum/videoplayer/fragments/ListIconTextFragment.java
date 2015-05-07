@@ -3,14 +3,18 @@ package com.mobintum.videoplayer.fragments;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.mobintum.videoplayer.R;
 import com.mobintum.videoplayer.adapters.ArtistAdapter;
+import com.mobintum.videoplayer.adapters.VideoAdapter;
 import com.mobintum.videoplayer.models.Artist;
+import com.mobintum.videoplayer.models.Video;
 
 import java.util.ArrayList;
 
@@ -19,22 +23,27 @@ public class ListIconTextFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
     private ListView listIconText;
     private ArtistAdapter adapter;
     private ArrayList<Artist> artists;
+    ArrayList<Video> videos;
 
 
     // TODO: Rename and change types of parameters
-    private String nameCategory;
+    private String name;
+    private String type;
 
 
     private OnListIconFragmentCallbacks mListener;
 
     // TODO: Rename and change types and number of parameters
-    public static ListIconTextFragment newInstance(String nameCategory) {
+    public static ListIconTextFragment newInstance(String type, String name) {
         ListIconTextFragment fragment = new ListIconTextFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, nameCategory);
+        args.putString(ARG_PARAM1, type);
+        args.putString(ARG_PARAM2, name);
 
         fragment.setArguments(args);
         return fragment;
@@ -48,7 +57,8 @@ public class ListIconTextFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            nameCategory = getArguments().getString(ARG_PARAM1);
+            type = getArguments().getString(ARG_PARAM1);
+            name = getArguments().getString(ARG_PARAM2);
 
         }
     }
@@ -62,19 +72,48 @@ public class ListIconTextFragment extends Fragment {
         listIconText = (ListView) view.findViewById(R.id.listIconText);
 
 
+        if(type.equals("Artist")) {
+            artists = Artist.getData(getActivity(), name);
+            Log.e("ARTIST", name);
+            ArtistAdapter adapter = new ArtistAdapter(getActivity(), R.layout.item_list_icon, artists);
+            listIconText.setAdapter(adapter);
 
-        artists = Artist.getData(getActivity(),nameCategory);
-        adapter = new ArtistAdapter(getActivity(),R.layout.item_list_icon, artists);
+        }
 
-        listIconText.setAdapter(adapter);
+        if(type.equals("Video")){
+            videos = Video.getData(getActivity(), name);
+            VideoAdapter adapter = new VideoAdapter(getActivity(), R.layout.item_list_icon, videos);
+            listIconText.setAdapter(adapter);
+
+        }
+
+        listIconText.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (mListener != null && type.equals("Artist")) {
+                    mListener.onListArtistSelected(artists.get(position).getNameArtist());
+                    return;
+
+                }
+
+                if (mListener != null && type.equals("Video")) {
+
+                    mListener.onVideoSelected(videos.get(position).getUrl());
+
+                }
+
+            }
+        });
+
+
 
         return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(String nameCategory) {
+    public void onButtonPressed(String nameArtist) {
         if (mListener != null) {
-            mListener.onListCategorySelected(nameCategory);
+            mListener.onListArtistSelected(nameArtist);
         }
     }
 
@@ -107,7 +146,9 @@ public class ListIconTextFragment extends Fragment {
      */
     public interface OnListIconFragmentCallbacks {
 
-        public void onListCategorySelected(String nameCategory);
+        public void onListArtistSelected(String name);
+
+        public void onVideoSelected(String url);
     }
 
 }

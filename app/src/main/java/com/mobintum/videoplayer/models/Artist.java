@@ -54,15 +54,16 @@ public class Artist {
 
             case "Banda":
                 artists.add( new Artist("Julion Alavarez","Banda", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                artists.add( new Artist("Banda MS","Banda", context.getResources().getDrawable(R.mipmap.ic_ms)));
                 break;
             case "Pop":
-                artists.add( new Artist("John Newman","Pop", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                artists.add( new Artist("John Newman","Pop", context.getResources().getDrawable(R.mipmap.ic_john_newman)));
                 break;
             case "Electronica":
-                artists.add( new Artist("Dash Berlin","Electronica", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                artists.add( new Artist("Dash Berlin","Electronica", context.getResources().getDrawable(R.mipmap.ic_dash_berlin)));
                 break;
             case "Salsa":
-                artists.add( new Artist("Victor Manuelle","Salsa", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                artists.add( new Artist("Victor Manuelle","Salsa", context.getResources().getDrawable(R.mipmap.ic_victor_manuelle)));
                 break;
         }
 

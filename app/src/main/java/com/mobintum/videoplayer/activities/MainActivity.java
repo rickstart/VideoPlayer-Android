@@ -63,7 +63,7 @@ public class MainActivity extends ActionBarActivity
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, ListIconTextFragment.newInstance(nameCategory))
+                .replace(R.id.container, ListIconTextFragment.newInstance("Artist", nameCategory))
                 .commit();
     }
 
@@ -123,7 +123,23 @@ public class MainActivity extends ActionBarActivity
     }
 
     @Override
-    public void onListCategorySelected(String nameCategory) {
+    public void onListArtistSelected(String nameArtist) {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, ListIconTextFragment.newInstance("Video", nameArtist))
+                .commit();
+
+
+
+    }
+
+    @Override
+    public void onVideoSelected(String url) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.container, VideoPlayerFragment.newInstance(url))
+                .commit();
 
     }
 
