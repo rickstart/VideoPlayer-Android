@@ -43,7 +43,7 @@ public class Category {
         ArrayList<Category> categories = new ArrayList<Category>();
 
         categories.add(new Category("Banda", context.getResources().getDrawable(R.mipmap.ic_banda)));
-        categories.add(new Category("Electronic", context.getResources().getDrawable(R.mipmap.ic_electronic)));
+        categories.add(new Category("Electronica", context.getResources().getDrawable(R.mipmap.ic_electronic)));
         categories.add(new Category("Pop", context.getResources().getDrawable(R.mipmap.ic_pop)));
         categories.add(new Category("Salsa", context.getResources().getDrawable(R.mipmap.ic_bottle)));
 

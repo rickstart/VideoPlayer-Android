@@ -3,6 +3,8 @@ package com.mobintum.videoplayer.models;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+import com.mobintum.videoplayer.R;
+
 import java.util.ArrayList;
 
 /**
@@ -47,6 +49,24 @@ public class Artist {
     public static ArrayList<Artist> getData(Context context, String nameCategory){
 
         ArrayList<Artist> artists = new ArrayList<Artist>();
+
+        switch(nameCategory){
+
+            case "Banda":
+                artists.add( new Artist("Julion Alavarez","Banda", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                break;
+            case "Pop":
+                artists.add( new Artist("John Newman","Pop", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                break;
+            case "Electronica":
+                artists.add( new Artist("Dash Berlin","Electronica", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                break;
+            case "Salsa":
+                artists.add( new Artist("Victor Manuelle","Salsa", context.getResources().getDrawable(R.mipmap.ic_julion)));
+                break;
+        }
+
+
 
         return artists;
 

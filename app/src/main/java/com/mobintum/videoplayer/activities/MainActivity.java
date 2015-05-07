@@ -1,24 +1,29 @@
 package com.mobintum.videoplayer.activities;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 
-import com.mobintum.videoplayer.fragments.NavigationDrawerFragment;
 import com.mobintum.videoplayer.R;
+import com.mobintum.videoplayer.fragments.ListIconTextFragment;
+import com.mobintum.videoplayer.fragments.NavigationDrawerFragment;
+import com.mobintum.videoplayer.fragments.VideoPlayerFragment;
+import com.mobintum.videoplayer.models.Category;
 
 
 public class MainActivity extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, VideoPlayerFragment.OnFragmentInteractionListener,
+                    ListIconTextFragment.OnListIconFragmentCallbacks{
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -45,12 +50,20 @@ public class MainActivity extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+
+
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        // update the main content by replacing fragments
+
+        String nameCategory = Category.getCategories(getApplicationContext()).get(position).getNameCategory();
+
+
+
+
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+                .replace(R.id.container, ListIconTextFragment.newInstance(nameCategory))
                 .commit();
     }
 
@@ -102,6 +115,16 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void onListCategorySelected(String nameCategory) {
+
     }
 
     /**
